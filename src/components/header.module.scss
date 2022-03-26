@@ -1,0 +1,93 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+.container {
+  z-index: 2;
+  top: 0;
+  left: 0;
+  padding: 0 $grid-gap;
+  position: fixed;
+  width: 100%;
+  background: $color-background;
+  @include breakpoint(large) {
+    background: transparent;
+    width: calc((((100% - ($grid-gap * 13)) / 12) * 3) + ($grid-gap * 4));
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+  }
+}
+
+.logo {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  &:after {
+    content: 'BKTF';
+  }
+  & span {
+    display: none;
+  }
+  @include breakpoint(large) {
+    & span {
+      display: inline-block;
+    }
+    &:after {
+      content: none;
+    }
+  }
+}
+
+.icon {
+  width: 2.312rem;
+  @include breakpoint(large) {
+    width: 3.875rem;
+  }
+}
+
+.subtitle {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  margin: 0 0 3.375rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1;
+  @include breakpoint(medium) {
+    font-size: 2rem;
+  }
+  @include breakpoint(large) {
+    position: relative;
+  }
+  @include breakpoint(ultra) {
+    font-size: 2.75rem;
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.625rem 0 2.375rem 0;
+}
+
+.button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  margin: 0 auto;
+  border-radius: 0;
+  background: $color-blob;
+  font-size: 2rem;
+  line-height: 1;
+  &:focus {
+    box-shadow: none;
+  }
+  @include breakpoint(large) {
+    display: none;
+  }
+}

@@ -1,0 +1,94 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-bottom: 7rem;
+    padding-top: 6rem;
+    @include breakpoint(large) {
+        padding-top: 0;
+        width: calc((((100% - ($grid-gap * 13)) / 12) * 9 ) + ($grid-gap * 9));
+    }
+}
+
+.scrolltotop {
+    position: fixed;
+    width: 2.875rem;
+    height: 2.875rem;
+    right: 0.875rem;
+    bottom: 3.875rem;
+    cursor: pointer;
+    transition: opacity 0.3s $ease;
+    opacity: 0;
+    display: none;
+    @include breakpoint(large) {
+        width: 3.875rem;
+        height: 3.875rem;
+    }
+}
+
+.doodle {
+    display: none;
+    @include breakpoint(large) {
+        display: inline-block;
+    }
+}
+
+.nomobile {
+    display: none;
+    @include breakpoint(large) {
+        display: initial;
+        z-index: 2;
+    }
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+.dates {
+    @include breakpoint(small) {
+        background-size: 245% 100%;
+        background-position: center;
+    }
+    @include breakpoint(medium) {
+        background-size: contain;
+        background-position: left center;
+    }
+}
+
+.datetitle {
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 0 0 2rem 0;
+    
+}
+
+.turn {
+    @include breakpoint(small) {
+        text-align: center;
+        font-size: 1rem;
+    }
+    @include breakpoint(medium) {
+        font-size: 1.312rem
+    }
+}
+
+.turnsquare {
+    @include breakpoint(small) {
+        font-size: 1rem;
+        text-align: center;
+    }
+}
+
+.turndays {
+    @include breakpoint(small) {
+        font-size: 1rem;
+    }
+}
