@@ -1,0 +1,14 @@
+@import "../style/variables";
+@import "../style/mixins";
+
+.container {
+  margin: 11.375rem 0 5.937rem 0;
+}
+
+.content {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.222em;
+  letter-spacing: 0.085em;
+  text-transform: uppercase;
+}

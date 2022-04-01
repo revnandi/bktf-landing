@@ -1,0 +1,40 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  filter: blur(17px);
+}
+
+.blob1 {
+  position: absolute;
+  bottom: 7rem;
+  // width: 50%;
+  height: 50%;
+  fill: $color-blob;
+  // width: 50vmax;
+  z-index: -1;
+  animation: move 40s ease-in-out infinite;
+  transform-origin: 50% 50%;
+  transform: rotateZ(360deg);
+  @include breakpoint(large) {
+    position: static;
+  }
+}
+
+.blob2 {
+  transform: rotateZ(360deg);
+  will-change: transform;
+  position: absolute;
+  right: -20rem;
+  bottom: 5rem;
+  height: 50%;
+  fill: $color-blob;
+  z-index: -1;
+  animation: move 40s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}

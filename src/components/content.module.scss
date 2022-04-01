@@ -15,6 +15,12 @@
       max-width: calc( ( ( ( 100% - ($grid-gap * 9) ) / 12 ) * 8) + ($grid-gap * 8));
     }
   }
+
+  h1 {
+    font-size: 3rem;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+  }
   
   ul {
     font-size: 1rem;

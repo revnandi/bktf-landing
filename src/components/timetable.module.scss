@@ -1,0 +1,72 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+.container {
+  display: table;
+  margin-bottom: 0;
+  border-bottom: 1px solid #000;
+}
+
+.body {
+  &:before {
+    content: '';
+    display: contents;
+    height: 1rem;
+    border-right: 1px solid #000;
+    margin-right: -1px;
+  }
+  &:after {
+    content: '';
+    display: contents;
+    height: 1rem;
+    border-right: 1px solid #000;
+    margin-right: -1px;
+  }
+}
+
+.timecell {
+  border-right: 1px solid #000;
+  font-weight: 700;
+  padding: 0;
+  @include breakpoint(small) {
+    font-size: 1rem;
+    padding: 0 0 0 0.5rem;
+  }
+  @include breakpoint(medium) {
+    font-size: 1.125rem;
+  }
+}
+
+.titlecell {
+  font-weight: 700;
+  @include breakpoint(small) {
+    font-size: 1rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  @include breakpoint(medium) {
+    font-size: 1.125rem;
+    padding-left: 1.5rem;
+  }
+}
+
+.headcell {
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  @include breakpoint(small) {
+    font-size: 1rem;
+    padding: 1.5rem 0.5rem 1rem 0.5rem;
+  }
+  @include breakpoint(medium) {
+    font-size: 1.125rem;
+    padding: 1.5rem 0 1rem 0;
+  }
+}
+
+.emptycell {
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}

@@ -1,0 +1,7 @@
+.container {
+  & > * {
+    text-transform: uppercase;
+    margin-top: 5.25rem;
+    margin-bottom: 8.187rem;
+  }
+}

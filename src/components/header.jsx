@@ -4,11 +4,10 @@ import BaIcon from '../images/icon_ba.svg';
 import Navigation from './navigation';
 import { useToggle } from '../hooks/hooks';
 
-const Header = ({ menuContent }) => {
+const Header = ({ menuContent, currentWaypoint }) => {
   const [isOpen, setIsOpen] = useToggle(false);
   // const {t} = useTranslation();
 
-  console.log(menuContent)
   return (
     <header className={ styles.container }>
       <div>
@@ -18,11 +17,15 @@ const Header = ({ menuContent }) => {
         </h1>
         <img className={ styles.icon } src={ BaIcon } alt="" />
       </div>
-      <h2 className={ styles.subtitle }>
-        { menuContent.title }
-      </h2>
+        <h2 className={ styles.subtitle }>
+          <a href="/">{ menuContent.title }</a>
+        </h2>
       </div>
-      <Navigation isOpen={ isOpen } passedFunction={ setIsOpen } items={ menuContent.navigation }/>
+      <Navigation
+        currentWaypoint={ currentWaypoint }
+        isOpen={ isOpen }
+        passedFunction={ setIsOpen }
+        items={ menuContent.navigation }/>
       <button className={ styles.button } onClick={ setIsOpen }>
       •••
       </button>

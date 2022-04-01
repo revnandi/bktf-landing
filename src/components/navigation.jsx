@@ -1,15 +1,19 @@
 import React from "react";
 import * as styles from "./navigation.module.scss";
 import { useTranslation } from 'react-i18next';
+import gsap from 'gsap';
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
+  gsap.registerPlugin(ScrollToPlugin);
   const { t, i18n } = useTranslation();
   // const context = React.useContext(I18nextContext);
   // const {languages, changeLanguage} = useI18next();
   // const {t} = useTranslation();
 
-  const handleClick = (id) => {
-    passedFunction();
+  const handleClick = function(id) {
+    gsap.to(window, {duration: 1, scrollTo: {y: id, autoKill: true }});
+    // passedFunction();
   };
 
   // const otherLanguage = () => {
@@ -23,11 +27,10 @@ const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
       return (
         <li
           key={ `item_${index}` }
-          className={ [styles.item, currentWaypoint === 'course' ? styles.active : ''].join(' ') } data-text='menu_item_course'
-          onClick={() => handleClick('#course')}>
+          className={ [styles.item, currentWaypoint === item.id ? styles.active : ''].join(' ') } data-text='menu_item_course'
+          onClick={() => handleClick(item.link)}>
           <a
             className={ styles.link } 
-            href="#"
           >
           { item.label }
           </a>

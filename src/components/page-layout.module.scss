@@ -1,0 +1,14 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    margin-bottom: 7rem;
+    padding-top: 6rem;
+    @include breakpoint(large) {
+        padding-top: 0;
+        width: calc((((100% - ($grid-gap * 13)) / 12) * 9 ) + ($grid-gap * 9));
+    }
+}
