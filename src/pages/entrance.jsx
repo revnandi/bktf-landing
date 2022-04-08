@@ -1,16 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import PageLayout from "../components/page-layout";
 import Content from "../components/content";
 import Breadcrumbs from "../components/breadcrumbs";
 import HeroImage from "../components/hero-image";
 import PageTitle from "../components/page-title";
-import Staff from "../components/staff";
+import Timetable from "../components/timetable";
 
-const StaffPage = ({ title, heroImage, content, staffMembers }) => {
-
+const EntrancePage = ({ title, heroImage, timetable, content }) => {
   return <PageLayout>
     <Content>
-      <Breadcrumbs content="Alapkézés / A Képzésről / Tanárok & stáb"/>
+      <Breadcrumbs content="Felvételi / Részletek a felvételi folyamatról"/>
       { heroImage &&
         <HeroImage image={ heroImage } />
       }
@@ -20,11 +19,8 @@ const StaffPage = ({ title, heroImage, content, staffMembers }) => {
       { content &&
         <div dangerouslySetInnerHTML={{__html: content }}></div>
       }
-      { staffMembers &&
-        <Staff staffMembers={ staffMembers }/>
-      }
     </Content>
   </PageLayout>
 };
 
-export default StaffPage;
+export default EntrancePage;

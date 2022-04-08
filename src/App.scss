@@ -264,3 +264,25 @@ tbody tr:nth-child(2n) {
 .revealable {
   // display: none;
 }
+
+.navigate-button {
+  display: flex;
+  align-items: center;
+  & svg {
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+  }
+  & a {
+    cursor: pointer;
+    color: #000;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import * as styles from './main.module.scss';
 import Content from './content';
 import Slider from './slider';
@@ -28,6 +28,32 @@ const Main = ({content, slides, passedFunctions }) => {
   gsap.registerPlugin(ScrollToPlugin);
   let navigate = useNavigate();
   const [slidesLoaded, setSlidesLoaded] = useState(false);
+
+  const container = useRef();
+  const moreButtons = useRef();
+
+  useEffect(() => {
+    moreButtons.current = container.current.querySelectorAll('.navigate-button');
+
+    moreButtons.current.forEach(item => {
+      if(item.querySelector('a')){
+        if(item.querySelector('a').getAttribute("href")) {
+          if(item.querySelector('a').getAttribute("href").charAt(0) === '/') {
+            const linkString = item.querySelector('a').getAttribute("href");
+            item.addEventListener('click', () => {
+              navigate(linkString);
+              setTimeout(() => {
+                gsap.to(window, {duration: 0, scrollTo: {y: 0, autoKill: true }});
+              }, 10);
+            });
+            item.querySelector("a").removeAttribute("href");
+          }
+        }
+      }
+    });
+    // console.log(container);
+    // console.log(moreButtons);
+  }, [content]);
 
   const handleEnter = (sectionName) => {
     passedFunctions.updateWaypoint(sectionName);
@@ -116,7 +142,7 @@ const Main = ({content, slides, passedFunctions }) => {
   }, [content])
 
   return (
-    <main className={ styles.container } id="content_main">
+    <main ref={ container } className={ styles.container } id="content_main">
       <Slider
         slides={ slides }
         passedFunctions={ functionsForSlider }

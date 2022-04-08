@@ -5,8 +5,12 @@ import Header from './components/header';
 import Main from './components/main';
 import Spinner from './components/spinner';
 import CoursePage from './pages/course';
+import EntrancePage from './pages/entrance';
+import LeapPage from './pages/leap';
 import TimetablePage from './pages/timetable';
+import NotFoundPage from './pages/404';
 import StaffPage from './pages/staff';
+import StaffMemberPage from './pages/staff-member';
 import './i18n.js';
 import { useTranslation } from 'react-i18next';
 import MouseCanvas from './components/mouse';
@@ -28,7 +32,7 @@ function App() {
       // console.log('setActiveWaypoint ' + newWaypoint);
       setActiveWaypoint(newWaypoint);
     }
-  }
+  };
   
   useEffect(() => {
     fetch(
@@ -162,6 +166,26 @@ function App() {
             }
           />
           <Route
+            path="/felveteli"
+            element={
+              <EntrancePage
+                heroImage={ pageData.acf ? pageData.acf.entrance_hero_image : false }
+                title={ pageData.acf ? pageData.acf.entrance_title : "" }
+                content={ pageData.acf ? pageData.acf.section_entrance_extended : "" }
+              />
+            }
+          />
+          <Route
+            path="/rafutas"
+            element={
+              <LeapPage
+                heroImage={ pageData.acf ? pageData.acf.leap_hero_image : false }
+                title={ pageData.acf ? pageData.acf.leap_title : "" }
+                content={ pageData.acf ? pageData.acf.section_leap_extended : "" }
+              />
+            }
+          />
+          <Route
             path="/mintaorarend"
             element={
               <TimetablePage
@@ -173,12 +197,29 @@ function App() {
             path="/stab"
             element={
               <StaffPage
-                timetable={ pageData.acf ? pageData.acf.staff_members : []}
+                staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
+              />
+            }
+          />
+          <Route
+            path="/stab/:id"
+            element={
+              <StaffMemberPage
+                staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <NotFoundPage
+                heroImage={ false }
+                title="<h1>Az oldal nem található</h1>"
               />
             }
           />
         </Routes>
-        {/* <Blobs /> */}
+        <Blobs />
         <MouseCanvas />
       </div>
     )

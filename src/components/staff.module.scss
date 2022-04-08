@@ -1,0 +1,74 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+
+.grid {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(1, 1fr);
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.item {
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+    & .imagecontainer {
+      opacity: 0.85;
+    }
+  }
+}
+.imagecontainer {
+  width: 100%;
+  transition: opacity 0.2s $ease;
+}
+
+.image {
+  width: 100%;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.812rem 0 0 0;
+}
+
+.textcontainer {
+
+}
+
+.name {
+  & > * {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+    @include breakpoint(medium) {
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.title {
+  & > * {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+    @include breakpoint(medium) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 2.312rem;
+  height: 2.312rem;
+}

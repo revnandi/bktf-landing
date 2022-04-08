@@ -17,9 +17,23 @@
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 1.25em;
     letter-spacing: 0.085em;
+    @include breakpoint(medium) {
+      font-size: 3rem;
+    }
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+
+  }
+
+  blockquote {
+    border-left: none;
   }
   
   ul {

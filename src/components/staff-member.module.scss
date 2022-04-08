@@ -1,0 +1,81 @@
+@import '../style/variables';
+@import '../style/mixins';
+
+.container {
+  display: flex;
+  gap: 1.875rem;
+  flex-direction: column;
+  @include breakpoint(medium) {
+    flex-direction: row;
+  }
+}
+
+.item {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+  @include breakpoint(medium) {
+    width: 20.062rem;
+  }
+}
+
+.illustration {
+  position: absolute;
+  top: -10%;
+  right: 0;
+  width: 6rem;
+  height: auto;
+  @include breakpoint(medium) {
+    top: -10%;
+    right: -25%;
+    width: 10.25rem;
+  }
+}
+
+.imagecontainer {
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+}
+
+.description {
+  @include breakpoint(medium) {
+    margin-top: 11.562rem;
+  }
+}
+
+.bottom {
+  margin-top: 1.75rem;
+}
+
+.name {
+  & > * {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+  }
+}
+
+.title {
+  & > * {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+  }
+}
+
+.description {
+  & > * {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.25em;
+    letter-spacing: 0.085em;
+  }
+}
