@@ -1,7 +1,7 @@
 import React from "react";
 import * as styles from "./staff-member.module.scss";
 
-const Staff = ({ member }) => {
+const StaffMember = ({ member }) => {
   return (
     <div className={ styles.container }>
       <div className={ styles.item }>
@@ -11,7 +11,7 @@ const Staff = ({ member }) => {
           </g>
         </svg>
         <div className={ styles.imagecontainer }>
-          <img className={ [styles.image, "lazyload", "blur-up"].join(" ") } src={ member.image.sizes.lqip } data-src={ member.image.sizes.large } alt={ member.image.alt } />
+          <img className={ [styles.image, "lazyload", "blur-up"].join(" ") } src={ member.image.sizes.widgetthumb } data-src={ member.image.sizes.large } alt={ member.image.alt } />
         </div>
         <div className={ styles.bottom }>
             <div className={ styles.name } dangerouslySetInnerHTML={{__html: member.name }}></div>
@@ -23,4 +23,4 @@ const Staff = ({ member }) => {
   )
 };
 
-export default Staff;
+export default StaffMember;

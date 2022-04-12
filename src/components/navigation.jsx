@@ -7,10 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
   gsap.registerPlugin(ScrollToPlugin);
-  const { t, i18n } = useTranslation();
-  // const context = React.useContext(I18nextContext);
-  // const {languages, changeLanguage} = useI18next();
-  // const {t} = useTranslation();
+  const { i18n } = useTranslation();
 
   const { pathname } = useLocation();
   let navigate = useNavigate();
@@ -24,14 +21,7 @@ const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
         gsap.to(window, {duration: 1, scrollTo: {y: id, autoKill: true }});
       }, 100);
     };
-    // passedFunction();
   };
-
-  // const otherLanguage = () => {
-  //   if (context.language === 'en') return 'hu';
-  //   else if (context.language === 'hu') return 'en';
-  //   else return undefined;
-  // };
 
   const renderItems = () => {
     return items.map((item, index) => {
@@ -64,7 +54,7 @@ const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
             console.log(i18n.language);
             i18n.changeLanguage(i18n.language === 'en' ? 'hu' : 'en');
           }}>
-          Hu
+          { i18n.language === 'en' ? 'hu' : 'en' }
         </button>
         <a href="https://www.facebook.com/BKTF.BCDA.BA" target="_blank" rel="noreferrer" aria-label="Facebook">
           <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -4,7 +4,6 @@ import Content from "../components/content";
 import Breadcrumbs from "../components/breadcrumbs";
 import HeroImage from "../components/hero-image";
 import PageTitle from "../components/page-title";
-import Timetable from "../components/timetable";
 
 const CoursePage = ({ title, heroImage, timetable, content1 }) => {
   return <PageLayout>

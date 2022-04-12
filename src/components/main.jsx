@@ -5,10 +5,9 @@ import Slider from './slider';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import {
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useScrollYPosition } from '../hooks/hooks';
+import SectionTitle from './section-title';
 
 import doodle_1 from '../images/BKTF_TA_pictograms_fin-52.svg';
 import doodle_2 from '../images/BKTF_TA_pictograms_fin-56.svg';
@@ -51,11 +50,10 @@ const Main = ({content, slides, passedFunctions }) => {
         }
       }
     });
-    // console.log(container);
-    // console.log(moreButtons);
   }, [content]);
 
   const handleEnter = (sectionName) => {
+    console.log(sectionName);
     passedFunctions.updateWaypoint(sectionName);
   };
 
@@ -73,49 +71,49 @@ const Main = ({content, slides, passedFunctions }) => {
   useEffect(() => {
     ScrollTrigger.create({
       trigger: '#mission',
-      markers: false,
       start: 'top bottom',
       end: 'bottom bottom',
+      markers: true,
       onToggle: () => handleEnter('mission')
     });
 
     ScrollTrigger.create({
       trigger: '#course',
-      markers: false,
       start: 'top bottom',
       end: 'bottom bottom',
+      markers: true,
       onToggle: () => handleEnter('course')
     });
 
     ScrollTrigger.create({
       trigger: '#entrance',
-      markers: false,
       start: 'top bottom',
       end: 'bottom bottom',
+      markers: true,
       onToggle: () => handleEnter('entrance')
     });
 
     ScrollTrigger.create({
       trigger: '#leap',
-      markers: false,
       start: 'top bottom',
       end: 'bottom bottom',
+      markers: true,
       onToggle: () => handleEnter('leap')
     });
 
     ScrollTrigger.create({
       trigger: '#events',
-      markers: false,
       start: 'top bottom',
       end: 'bottom bottom',
+      markers: true,
       onToggle: () => handleEnter('events')
     });
     
     ScrollTrigger.create({
       trigger: '#contact',
-      markers: false,
       start: 'top bottom',
       end: 'bottom bottom',
+      markers: true,
       onToggle: () => handleEnter('contact')
     });
   
@@ -143,11 +141,11 @@ const Main = ({content, slides, passedFunctions }) => {
 
   return (
     <main ref={ container } className={ styles.container } id="content_main">
-      <Slider
-        slides={ slides }
-        passedFunctions={ functionsForSlider }
-      />
       <section id='mission'>
+        <Slider
+          slides={ slides }
+          passedFunctions={ functionsForSlider }
+        />
         <Content>
           <div dangerouslySetInnerHTML={{__html: content.mission.content }}/>
         </Content>
@@ -183,7 +181,10 @@ const Main = ({content, slides, passedFunctions }) => {
             />
             <hr style={ { height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' } }/>
           </div>
-          <div id='course' dangerouslySetInnerHTML={{__html: content.course.content }}/>
+          <div id='course' >
+            <SectionTitle title={ content.course.title }/>
+            <div dangerouslySetInnerHTML={{__html: content.course.content }}/>
+          </div>
         </Content>
       </section>
       <section>
@@ -204,7 +205,10 @@ const Main = ({content, slides, passedFunctions }) => {
             />
             <hr style={ { height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' } }/>
           </div>
-          <div id='entrance' dangerouslySetInnerHTML={{__html: content.entrance.content }}/>
+          <div id='entrance'>
+            <SectionTitle title={ content.entrance.title }/>
+            <div dangerouslySetInnerHTML={{__html: content.entrance.content }}/>
+          </div>
         </Content>
       </section>
       <section>
@@ -225,7 +229,10 @@ const Main = ({content, slides, passedFunctions }) => {
           />
           <hr style={ { height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' } }/>
         </div>
-          <div id='leap' dangerouslySetInnerHTML={{__html: content.leap.content }}/>
+          <div id='leap'>
+            <SectionTitle title={ content.leap.title }/>
+            <div dangerouslySetInnerHTML={{__html: content.leap.content }}/>
+          </div>
         </Content>
       </section>
       <section>
@@ -259,12 +266,18 @@ const Main = ({content, slides, passedFunctions }) => {
             />
             <hr style={ { height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' } }/>
           </div>
-          <div id='events' dangerouslySetInnerHTML={{__html: content.events.content }}/>
+          <div id='events'>
+            <SectionTitle title={ content.events.title }/>
+            <div dangerouslySetInnerHTML={{__html: content.events.content }}/>
+          </div>
         </Content>
       </section>
       <section>
         <Content>
-          <div id='contact' dangerouslySetInnerHTML={{__html: content.contact.content }}/>
+          <div id='contact'>
+            <SectionTitle title={ content.contact.title }/>
+            <div dangerouslySetInnerHTML={{__html: content.contact.content }}/>
+          </div>
         </Content>
       </section>
         <svg

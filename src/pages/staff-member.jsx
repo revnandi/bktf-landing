@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import PageLayout from "../components/page-layout";
 import Content from "../components/content";
 import Breadcrumbs from "../components/breadcrumbs";
+import BackButton from "../components/back-button";
 import StaffMember from "../components/staff-member";
 
 const StaffMemberPage = ({ staffMembers }) => {
@@ -18,6 +19,7 @@ const StaffMemberPage = ({ staffMembers }) => {
   return <PageLayout>
     <Content>
       <Breadcrumbs content="Alapkézés / A Képzésről / Tanárok & stáb"/>
+      <BackButton/>
       { member &&
         <StaffMember member={ member } />
       }

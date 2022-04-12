@@ -2,7 +2,6 @@ import React from "react";
 import * as styles from "./timetable.module.scss";
 
 const Timetable = ({ timetable }) => {
-  console.log(timetable.forEach(item => console.log(item)));
   const renderDays = () => {
     return timetable.map((item, index) => {
       const renderHeader = () => {

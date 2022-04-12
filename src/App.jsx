@@ -10,6 +10,7 @@ import LeapPage from './pages/leap';
 import TimetablePage from './pages/timetable';
 import NotFoundPage from './pages/404';
 import StaffPage from './pages/staff';
+import TeachersPage from './pages/teachers';
 import StaffMemberPage from './pages/staff-member';
 import './i18n.js';
 import { useTranslation } from 'react-i18next';
@@ -57,7 +58,7 @@ function App() {
   if(!loaded) {
     return <div className="App">
       <Spinner></Spinner>
-      <Blobs />
+      {/* <Blobs /> */}
     </div>
   } else {
     return (
@@ -100,21 +101,27 @@ function App() {
                 content={
                   {
                     mission: {
+                      title: pageData.acf ? pageData.acf.mission_title : "",
                       content: pageData.acf ? pageData.acf.section_mission : ""
                     },
                     course: {
+                      title: pageData.acf ? pageData.acf.course_title : "",
                       content: pageData.acf ? pageData.acf.section_course : ""
                     },
                     entrance: {
+                      title: pageData.acf ? pageData.acf.entrance_title : "",
                       content: pageData.acf ? pageData.acf.section_entrance : ""
                     },
                     leap: {
+                      title: pageData.acf ? pageData.acf.leap_title : "",
                       content: pageData.acf ? pageData.acf.section_leap : ""
                     },
                     events: {
+                      title: pageData.acf ? pageData.acf.events_title : "",
                       content: pageData.acf ? pageData.acf.section_events : ""
                     },
                     contact: {
+                      title: pageData.acf ? pageData.acf.contact_title : "",
                       content: pageData.acf ? pageData.acf.section_contact : ""
                     }
                   }
@@ -166,6 +173,23 @@ function App() {
             }
           />
           <Route
+            path="/alapkepzes/tanaraink"
+            element={
+              <TeachersPage
+                title={ i18n.language === "en" ? "<h1>Teachers</h1>\n" : "<h1>Tanáraink</h1>\n" }
+                content={ pageData.acf ? pageData.acf.teachers : "" }
+              />
+            }
+          />
+          <Route
+            path="/alapkepzes/stab"
+            element={
+              <StaffPage
+                staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
+              />
+            }
+          />
+          <Route
             path="/felveteli"
             element={
               <EntrancePage
@@ -186,18 +210,10 @@ function App() {
             }
           />
           <Route
-            path="/mintaorarend"
+            path="/alapkepzes/mintaorarend"
             element={
               <TimetablePage
                 timetable={ pageData.acf ? pageData.acf.timetable : []}
-              />
-            }
-          />
-          <Route
-            path="/stab"
-            element={
-              <StaffPage
-                staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
               />
             }
           />
@@ -219,7 +235,7 @@ function App() {
             }
           />
         </Routes>
-        <Blobs />
+        {/* <Blobs /> */}
         <MouseCanvas />
       </div>
     )

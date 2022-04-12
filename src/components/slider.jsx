@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Splide, SplideSlide  } from '@splidejs/react-splide';
 import * as styles from './slider.module.scss';
 import '@splidejs/splide/dist/css/splide.min.css';
 
 const Slider = ({ slides, passedFunctions }) => {
   // passedFunctions.setAllLoaded();
+  let sliderref = useRef(null);
   let numberOfLoadedItems = 0;
 
   const handleImageLoad = () => {
     numberOfLoadedItems++;
     if(numberOfLoadedItems >= slides.length ) passedFunctions.setAllLoaded();
   };
+
+  useEffect(() => {
+    setInterval(() => {
+      sliderref.current.splide.go('>');
+    }, 3000);
+  }, []);
 
   const renderSlides = () => {
     return slides.map((item, index) => {
@@ -31,10 +38,11 @@ const Slider = ({ slides, passedFunctions }) => {
 
   return <div className={ styles.container }>
     <Splide
+      ref={ sliderref }
       className={ styles.slider }
       options={ {
         type  : 'fade',
-        autoplay: true,
+        autoplay: false,
         interval: 3000,
         rewind: true,
         pauseOnHover: false,
@@ -43,6 +51,7 @@ const Slider = ({ slides, passedFunctions }) => {
         arrows: false
       } }
     >
+
       { renderSlides() }
     </Splide>
   </div>

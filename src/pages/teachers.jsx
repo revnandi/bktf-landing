@@ -1,17 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageLayout from "../components/page-layout";
+import PageTitle from "../components/page-title";
 import Content from "../components/content";
 import Breadcrumbs from "../components/breadcrumbs";
-import HeroImage from "../components/hero-image";
-import PageTitle from "../components/page-title";
 
-const EntrancePage = ({ title, heroImage, timetable, content }) => {
+const Teachers = ({ title, content }) => {
   return <PageLayout>
     <Content>
-      <Breadcrumbs content="Felvételi / Részletek a felvételi folyamatról"/>
-      { heroImage &&
-        <HeroImage image={ heroImage } />
-      }
+      <Breadcrumbs content="Alapkézés / A Képzésről / Tanáraink"/>
       { title &&
         <PageTitle content={ title } />
       }
@@ -22,4 +18,4 @@ const EntrancePage = ({ title, heroImage, timetable, content }) => {
   </PageLayout>
 };
 
-export default EntrancePage;
+export default Teachers;
