@@ -14,9 +14,11 @@ const Slider = ({ slides, passedFunctions }) => {
   };
 
   useEffect(() => {
-    setInterval(() => {
-      sliderref.current.splide.go('>');
-    }, 3000);
+    if(sliderref.current) {
+      setInterval(() => {
+        sliderref.current.splide.go('>');
+      }, 3000);
+    }
   }, []);
 
   const renderSlides = () => {
@@ -24,6 +26,7 @@ const Slider = ({ slides, passedFunctions }) => {
       return (
         <SplideSlide className={ styles.slide } key={ `slide_${index}` }>
           <img
+            className={ styles.image }
             src={ item.sizes.medium_large }
             alt='Táncosok'
             placeholder='blurred'
@@ -31,6 +34,8 @@ const Slider = ({ slides, passedFunctions }) => {
               console.log('loaded ' + index);
               handleImageLoad();
             }}}
+            width={ item.sizes['medium_large-width'] }
+            height={ item.sizes['medium_large-height'] }
           />
         </SplideSlide>)
     });

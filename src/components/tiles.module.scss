@@ -1,0 +1,11 @@
+@import "../style/variables";
+@import "../style/mixins";
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

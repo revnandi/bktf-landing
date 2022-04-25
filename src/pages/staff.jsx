@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import PageLayout from "../components/page-layout";
 import Content from "../components/content";
-import Breadcrumbs from "../components/breadcrumbs";
 import HeroImage from "../components/hero-image";
 import PageTitle from "../components/page-title";
 import Staff from "../components/staff";
+import BackButton from "../components/back-button";
 
 const StaffPage = ({ title, heroImage, content, staffMembers }) => {
 
   return <PageLayout>
     <Content>
-      <Breadcrumbs content="Alapkézés / A Képzésről / Tanárok & stáb"/>
+      <BackButton target="/alapkepzes"/>
       { heroImage &&
         <HeroImage image={ heroImage } />
       }

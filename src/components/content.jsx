@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import * as styles from './content.module.scss';
 import { useNavigate } from "react-router-dom";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import gsap from "gsap";
 
 const Content = ({ children }) => {
   let navigate = useNavigate();
   const container = useRef();
   const moreButtons = useRef();
+  gsap.registerPlugin(ScrollToPlugin);
 
   useEffect(() => {
     moreButtons.current = container.current.querySelectorAll('.navigate-button');

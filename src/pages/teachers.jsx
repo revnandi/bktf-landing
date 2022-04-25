@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import PageLayout from "../components/page-layout";
 import PageTitle from "../components/page-title";
 import Content from "../components/content";
-import Breadcrumbs from "../components/breadcrumbs";
+import BackButton from "../components/back-button";
 
 const Teachers = ({ title, content }) => {
   return <PageLayout>
     <Content>
-      <Breadcrumbs content="Alapkézés / A Képzésről / Tanáraink"/>
+      <BackButton target="/felveteli"/>
       { title &&
         <PageTitle content={ title } />
       }

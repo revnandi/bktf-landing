@@ -8,6 +8,8 @@ import CoursePage from './pages/course';
 import EntrancePage from './pages/entrance';
 import LeapPage from './pages/leap';
 import TimetablePage from './pages/timetable';
+import EntranceTimetablePage from './pages/entrance-timetable';
+import TiledPageExteded from './pages/tiled-page-extended';
 import NotFoundPage from './pages/404';
 import StaffPage from './pages/staff';
 import TeachersPage from './pages/teachers';
@@ -26,7 +28,7 @@ function App() {
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [pageData, setPageData] = useState([]);
-  const [activeWaypoint, setActiveWaypoint] = useState(null);
+  const [activeWaypoint, setActiveWaypoint] = useState('null');
 
   const functionsforMain = {
     updateWaypoint: function(newWaypoint) {
@@ -58,7 +60,7 @@ function App() {
   if(!loaded) {
     return <div className="App">
       <Spinner></Spinner>
-      {/* <Blobs /> */}
+      <Blobs />
     </div>
   } else {
     return (
@@ -101,7 +103,7 @@ function App() {
                 content={
                   {
                     mission: {
-                      title: pageData.acf ? pageData.acf.mission_title : "",
+                      title: i18n.language === 'en' ? '<h1>Mission</h1>' : '<h1>Misszió</h1>',
                       content: pageData.acf ? pageData.acf.section_mission : ""
                     },
                     course: {
@@ -114,11 +116,13 @@ function App() {
                     },
                     leap: {
                       title: pageData.acf ? pageData.acf.leap_title : "",
-                      content: pageData.acf ? pageData.acf.section_leap : ""
+                      content: pageData.acf ? pageData.acf.section_leap : "",
+                      tiles: pageData.acf ? pageData.acf.leap_tiles : "",
                     },
                     events: {
                       title: pageData.acf ? pageData.acf.events_title : "",
-                      content: pageData.acf ? pageData.acf.section_events : ""
+                      content: pageData.acf ? pageData.acf.section_events : "",
+                      tiles: pageData.acf ? pageData.acf.events_tiles : "",
                     },
                     contact: {
                       title: pageData.acf ? pageData.acf.contact_title : "",
@@ -210,6 +214,14 @@ function App() {
             }
           />
           <Route
+            path="/rafutas/:slug"
+            element={
+              <TiledPageExteded
+                tiles={ pageData.acf ? pageData.acf.leap_tiles : [] }
+              />
+            }
+          />
+          <Route
             path="/alapkepzes/mintaorarend"
             element={
               <TimetablePage
@@ -218,10 +230,26 @@ function App() {
             }
           />
           <Route
+            path="/felveteli/mintaorarend"
+            element={
+              <EntranceTimetablePage
+                timetable={ pageData.acf ? pageData.acf.timetable_entrance : []}
+              />
+            }
+          />
+          <Route
             path="/stab/:id"
             element={
               <StaffMemberPage
                 staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
+              />
+            }
+          />
+          <Route
+            path="/esemenyek/:slug"
+            element={
+              <TiledPageExteded
+                tiles={ pageData.acf ? pageData.acf.events_tiles : [] }
               />
             }
           />
@@ -235,7 +263,7 @@ function App() {
             }
           />
         </Routes>
-        {/* <Blobs /> */}
+        <Blobs />
         <MouseCanvas />
       </div>
     )
