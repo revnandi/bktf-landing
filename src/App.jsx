@@ -14,6 +14,7 @@ import NotFoundPage from './pages/404';
 import StaffPage from './pages/staff';
 import TeachersPage from './pages/teachers';
 import StaffMemberPage from './pages/staff-member';
+import StudentLifePage from './pages/student-life';
 import './i18n.js';
 import { useTranslation } from 'react-i18next';
 import MouseCanvas from './components/mouse';
@@ -180,8 +181,26 @@ function App() {
             path="/alapkepzes/tanaraink"
             element={
               <TeachersPage
-                title={ i18n.language === "en" ? "<h1>Teachers</h1>\n" : "<h1>Tanáraink</h1>\n" }
+                title={ i18n.language === "en" ? "<h1>Teachers</h1>\n" : "<h1>Teachers</h1>\n" }
                 content={ pageData.acf ? pageData.acf.teachers : "" }
+              />
+            }
+          />
+          <Route
+            path="/alapkepzes/diakelet"
+            element={
+              <StudentLifePage
+                title={ pageData.acf ? pageData.acf.student_life.title : "" }
+                heroImage={ pageData.acf ? pageData.acf.student_life.image : "" }
+                content={ pageData.acf ? pageData.acf.student_life.content : "" }
+              />
+            }
+          />
+          <Route
+            path="/alapkepzes/mintaorarend"
+            element={
+              <TimetablePage
+                timetable={ pageData.acf ? pageData.acf.timetable : []}
               />
             }
           />
@@ -194,12 +213,28 @@ function App() {
             }
           />
           <Route
+            path="/alapkepzes/stab/:id"
+            element={
+              <StaffMemberPage
+                staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
+              />
+            }
+          />
+          <Route
             path="/felveteli"
             element={
               <EntrancePage
                 heroImage={ pageData.acf ? pageData.acf.entrance_hero_image : false }
                 title={ pageData.acf ? pageData.acf.entrance_title : "" }
                 content={ pageData.acf ? pageData.acf.section_entrance_extended : "" }
+                />
+              }
+          />
+          <Route
+            path="/felveteli/mintaorarend"
+            element={
+              <EntranceTimetablePage
+                timetable={ pageData.acf ? pageData.acf.timetable_entrance : []}
               />
             }
           />
@@ -218,30 +253,6 @@ function App() {
             element={
               <TiledPageExteded
                 tiles={ pageData.acf ? pageData.acf.leap_tiles : [] }
-              />
-            }
-          />
-          <Route
-            path="/alapkepzes/mintaorarend"
-            element={
-              <TimetablePage
-                timetable={ pageData.acf ? pageData.acf.timetable : []}
-              />
-            }
-          />
-          <Route
-            path="/felveteli/mintaorarend"
-            element={
-              <EntranceTimetablePage
-                timetable={ pageData.acf ? pageData.acf.timetable_entrance : []}
-              />
-            }
-          />
-          <Route
-            path="/stab/:id"
-            element={
-              <StaffMemberPage
-                staffMembers={ pageData.acf ? pageData.acf.staff_members : []}
               />
             }
           />

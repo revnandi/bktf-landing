@@ -9,11 +9,11 @@ const CoursePage = ({ title, heroImage, timetable, content1 }) => {
   return <PageLayout>
     <Content>
       <BackButton target="/"/>
-      { heroImage &&
-        <HeroImage image={ heroImage } />
-      }
       { title &&
         <PageTitle content={ title } />
+      }
+      { heroImage &&
+        <HeroImage image={ heroImage } />
       }
       { content1 &&
         <div dangerouslySetInnerHTML={{__html: content1 }}></div>

@@ -9,11 +9,11 @@ const NotFoundPage = ({ title, heroImage, content }) => {
   return <PageLayout>
     <Content>
       <BackButton target="/"/>
-      { heroImage &&
-        <HeroImage image={ heroImage } />
-      }
       { title &&
         <PageTitle content={ title } />
+      }
+      { heroImage &&
+        <HeroImage image={ heroImage } />
       }
       { content &&
         <div dangerouslySetInnerHTML={{__html: content }}></div>

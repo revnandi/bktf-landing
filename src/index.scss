@@ -1,13 +1,117 @@
+@import "./style/variables";
+@import "./style/mixins";
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.static-timetable {
+  margin-bottom: 2rem;
+  .section-title-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .section-title-title {
+    color: inherit;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 1.25rem 0;
+  }
+  
+  .section-title-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .section-title-inverse {
+    & h1, h2, h3, h4, h5 {
+      color: $color-background;
+      padding: 1.25rem 0;
+    }
+    padding-left: 0.1rem;
+    background: #000;
+    color: $color-background;
+  }
+
+  .timetable-container {
+    display: table;
+    margin-bottom: 0;
+    border-bottom: 1px solid #000;
+  }
+
+  .timetable-body {
+    &:before {
+      content: "";
+      display: contents;
+      height: 1rem;
+      border-right: 1px solid #000;
+      margin-right: -1px;
+    }
+    &:after {
+      content: "";
+      display: contents;
+      height: 1rem;
+      border-right: 1px solid #000;
+      margin-right: -1px;
+    }
+  }
+
+  .timetable-timecell {
+    border-right: 1px solid #000;
+    font-weight: 700;
+    padding: 0;
+    @include breakpoint(small) {
+      font-size: 1rem;
+      padding: 0 0 0 0.5rem;
+    }
+    @include breakpoint(medium) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .timetable-titlecell {
+    font-weight: 700;
+    @include breakpoint(small) {
+      font-size: 1rem;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    @include breakpoint(medium) {
+      font-size: 1.125rem;
+      padding-left: 1.5rem;
+    }
+  }
+
+  .timetable-headcell {
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    @include breakpoint(small) {
+      font-size: 1rem;
+      padding: 1.5rem 0.5rem 1rem 0.5rem;
+    }
+    @include breakpoint(medium) {
+      font-size: 1.125rem;
+      padding: 1.5rem 0 1rem 0;
+    }
+  }
+
+  .timetable-emptycell {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+  }
 }

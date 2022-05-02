@@ -9,8 +9,6 @@ import { useTranslation } from 'react-i18next';
 const TimetablePage = ({ timetable }) => {
   const { i18n } = useTranslation();
 
-  console.log(i18n.language);
-
   return <PageLayout>
     <Content>
       <BackButton target="/alapkepzes"/>

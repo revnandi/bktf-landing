@@ -8,7 +8,7 @@ const Blobs = () => {
   const blob2 = useRef(null);
 
   useEffect(() => {
-    console.log(blob1)
+    // console.log(blob1)
     tl.current = gsap.timeline({repeat: -1});
 
     tl.current.to(blob1.current, {

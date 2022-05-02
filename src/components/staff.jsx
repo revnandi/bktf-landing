@@ -6,7 +6,7 @@ const Staff = ({ staffMembers }) => {
   let navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/stab/${id}`);
+    navigate(`/alapkepzes/stab/${id}`);
   };
 
   const renderStaffMembers = () => {

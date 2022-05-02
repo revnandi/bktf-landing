@@ -14,7 +14,7 @@ const Slider = ({ slides, passedFunctions }) => {
   };
 
   useEffect(() => {
-    if(sliderref.current) {
+    if(sliderref && sliderref.current && sliderref.current.splide) {
       setInterval(() => {
         sliderref.current.splide.go('>');
       }, 3000);
@@ -31,7 +31,6 @@ const Slider = ({ slides, passedFunctions }) => {
             alt='Táncosok'
             placeholder='blurred'
             onLoad={() => {{
-              console.log('loaded ' + index);
               handleImageLoad();
             }}}
             width={ item.sizes['medium_large-width'] }

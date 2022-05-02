@@ -9,3 +9,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  :global .navigate-button {
+    margin-top: auto;
+  }
+}

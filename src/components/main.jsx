@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import * as styles from './main.module.scss';
 import Content from './content';
 import Slider from './slider';
@@ -6,22 +6,18 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useNavigate } from "react-router-dom";
+import { yScrollContext } from "../components/yScroll";
 import SectionTitle from './section-title';
 import Tiles from './tiles';
 import { Waypoint } from 'react-waypoint';
 
-// import doodle_1 from '../images/BKTF_TA_pictograms_fin-52.svg';
 import doodle_2 from '../images/BKTF_TA_pictograms_fin-56.svg';
 import doodle_3 from '../images/BKTF_TA_pictograms_fin-01.svg';
 import doodle_4 from '../images/BKTF_TA_pictograms_fin-05.svg';
-// import doodle_5 from '../images/BKTF_TA_pictograms_fin-40.svg';
-// import doodle_6 from '../images/BKTF_TA_pictograms_fin-48.svg';
 import doodle_7 from '../images/BKTF_TA_pictograms_fin-24.svg';
 import doodle_8 from '../images/BKTF_TA_pictograms_fin-49.svg';
 import doodle_9 from '../images/BKTF_TA_pictograms_fin-07.svg';
-// import doodle_10 from '../images/BKTF_TA_pictograms_fin-59.svg';
 import doodle_11 from '../images/BKTF_TA_pictograms_fin-46.svg';
-// import doodle_12 from '../images/BKTF_TA_pictograms_fin-42.svg';
 
 const Main = ({ content, slides, passedFunctions }) => {
   gsap.registerPlugin(ScrollTrigger);
@@ -29,8 +25,20 @@ const Main = ({ content, slides, passedFunctions }) => {
   let navigate = useNavigate();
   const [slidesLoaded, setSlidesLoaded] = useState(false);
 
+  const {yScroll, setYscroll} = useContext(yScrollContext)
+
   const container = useRef();
   const moreButtons = useRef();
+
+    function handleClickEvent(link) {
+    setYscroll(prev=>window.scrollY );
+    console.log(yScroll);
+    navigate(link);
+    setTimeout(() => {
+      gsap.to(window, {duration: 0, scrollTo: {y: 0, autoKill: true}});
+    }, 10);
+  };
+
 
   useEffect(() => {
     moreButtons.current = container.current.querySelectorAll('.navigate-button');
@@ -40,18 +48,18 @@ const Main = ({ content, slides, passedFunctions }) => {
         if (item.querySelector('a').getAttribute("href")) {
           if (item.querySelector('a').getAttribute("href").charAt(0) === '/') {
             const linkString = item.querySelector('a').getAttribute("href");
-            item.addEventListener('click', () => {
-              navigate(linkString);
-              setTimeout(() => {
-                gsap.to(window, { duration: 0, scrollTo: { y: 0, autoKill: true } });
-              }, 10);
-            });
+            item.addEventListener('click', () => handleClickEvent(linkString));
             item.querySelector("a").removeAttribute("href");
           }
         }
       }
     });
-  }, [content]);
+    return () => {
+      moreButtons.current.forEach(item => {
+        item.removeEventListener('click', () => handleClickEvent);
+      });
+    }
+  }, [content]);  
 
   const handleEnter = (sectionName) => {
     // console.log(sectionName);
@@ -60,7 +68,7 @@ const Main = ({ content, slides, passedFunctions }) => {
 
   const functionsForSlider = {
     setAllLoaded: () => {
-      console.log('setAllLoaded');
+      // console.log('setAllLoaded');
       setSlidesLoaded(true);
     }
   };
@@ -86,15 +94,17 @@ const Main = ({ content, slides, passedFunctions }) => {
       <Waypoint
         onEnter={() => handleEnter('mission')}
       >
-        <section id='mission'>
+        <section>
           <Slider
             slides={slides}
             passedFunctions={functionsForSlider}
           />
-          <Content>
-            <SectionTitle title={content.mission.title} />
-            <div dangerouslySetInnerHTML={{ __html: content.mission.content }} />
-          </Content>
+          <div id='mission'>
+            <Content>
+              <SectionTitle title={content.mission.title} />
+              <div dangerouslySetInnerHTML={{ __html: content.mission.content }} />
+            </Content>
+          </div>
         </section>
       </Waypoint>
       <Waypoint

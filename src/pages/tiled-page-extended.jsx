@@ -21,11 +21,11 @@ const TiledPageExteded = ({ tiles }) => {
   return <PageLayout>
     <Content>
       <BackButton target="/"/>
-      { tile && tile.tile.hero_image &&
-        <HeroImage image={ tile.tile.hero_image } />
-      }
       { tile && tile.tile.title &&
         <PageTitle content={ tile.tile.title } />
+      }
+      { tile && tile.tile.hero_image &&
+        <HeroImage image={ tile.tile.hero_image } />
       }
       { tile && tile.tile.content_extended &&
         <div dangerouslySetInnerHTML={{__html: tile.tile.content_extended }}></div>

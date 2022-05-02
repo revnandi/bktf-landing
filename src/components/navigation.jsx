@@ -3,7 +3,8 @@ import * as styles from "./navigation.module.scss";
 import { useTranslation } from 'react-i18next';
 import gsap from 'gsap';
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
   gsap.registerPlugin(ScrollToPlugin);
@@ -13,6 +14,7 @@ const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
   let navigate = useNavigate();
 
   const handleClick = function (id) {
+    passedFunction(false);
     if (pathname === '/') {
       gsap.to(window, { duration: 1, scrollTo: { y: id, autoKill: true } });
     } else {
@@ -51,7 +53,7 @@ const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
           className={styles.languageswitcher}
           onClick={(e) => {
             e.preventDefault();
-            console.log(i18n.language);
+            // console.log(i18n.language);
             i18n.changeLanguage(i18n.language === 'en' ? 'hu' : 'en');
           }}>
           {i18n.language === 'en' ? 'hu' : 'en'}

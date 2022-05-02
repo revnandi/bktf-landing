@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as styles from "./back-button.module.scss";
 import { useNavigate } from "react-router-dom";
+import { yScrollContext } from "../components/yScroll";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import gsap from "gsap";
 import { useTranslation } from 'react-i18next';
@@ -10,11 +11,14 @@ const BackButton = ({ target }) => {
   const { i18n } = useTranslation();
   let navigate = useNavigate();
 
+  const {yScroll} = useContext(yScrollContext)
+
   const handleClick = () => {
     if(!target || target === '') return;
+    console.log(`backbutton click yScroll: ${yScroll}`);
     navigate(target);
     setTimeout(() => {
-      gsap.to(window, {duration: 0, scrollTo: {y: 0, autoKill: true }});
+      gsap.to(window, {duration: 0, scrollTo: {y: yScroll, autoKill: true }});
     }, 10);
   };
 
