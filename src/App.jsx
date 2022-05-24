@@ -20,11 +20,13 @@ import { useTranslation } from 'react-i18next';
 import MouseCanvas from './components/mouse';
 import Blobs from './components/blobs';
 import { Helmet } from 'react-helmet';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import meta_image from '../src/images/meta.png';
 
 function App() {
+  const [cookies, setCookie] = useCookies(['bktf_cd_lang']);
   const [t, i18n] = useTranslation();
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -37,12 +39,19 @@ function App() {
       setActiveWaypoint(newWaypoint);
     }
   };
+
+  useEffect(() => {
+    if(cookies.bktf_cd_lang) {
+      i18n.changeLanguage(cookies.bktf_cd_lang);
+    }
+  }, [])
   
   useEffect(() => {
+    console.log(cookies);
     fetch(
       i18n.language === 'en'
-        ? 'https://bktfwp.freizeit.hu/wp-json/wp/v2/cd_landing?slug=landing-en&acf_format=standard'
-        : 'https://bktfwp.freizeit.hu/wp-json/wp/v2/cd_landing?slug=landing-hu&acf_format=standard'
+        ? 'https://tanc.org.hu/wp/wp-json/wp/v2/cd_landing?slug=landing-en&acf_format=standard'
+        : 'https://tanc.org.hu/wp/wp-json/wp/v2/cd_landing?slug=landing-hu&acf_format=standard'
       )
       .then(res => res.json())
       .then(
@@ -54,7 +63,8 @@ function App() {
           setLoaded(true);
           setError(error);
         }
-      )
+      );
+    setCookie('bktf_cd_lang', i18n.language);
   }, [i18n.language]);
 
 
@@ -104,28 +114,34 @@ function App() {
                 content={
                   {
                     mission: {
-                      title: i18n.language === 'en' ? '<h1>Mission</h1>' : '<h1>Misszió</h1>',
+                      isActive: pageData.acf ? pageData.acf.show_mission : "",
+                      title: i18n.language === 'en' ? '<h1>Mission Statement</h1>' : '<h1>Misszió</h1>',
                       content: pageData.acf ? pageData.acf.section_mission : ""
                     },
                     course: {
+                      isActive: pageData.acf ? pageData.acf.show_course : "",
                       title: pageData.acf ? pageData.acf.course_title : "",
                       content: pageData.acf ? pageData.acf.section_course : ""
                     },
                     entrance: {
+                      isActive: pageData.acf ? pageData.acf.show_entrance : "",
                       title: pageData.acf ? pageData.acf.entrance_title : "",
                       content: pageData.acf ? pageData.acf.section_entrance : ""
                     },
                     leap: {
+                      isActive: pageData.acf ? pageData.acf.show_leap : "",
                       title: pageData.acf ? pageData.acf.leap_title : "",
                       content: pageData.acf ? pageData.acf.section_leap : "",
                       tiles: pageData.acf ? pageData.acf.leap_tiles : "",
                     },
                     events: {
+                      isActive: pageData.acf ? pageData.acf.show_events : "",
                       title: pageData.acf ? pageData.acf.events_title : "",
                       content: pageData.acf ? pageData.acf.section_events : "",
                       tiles: pageData.acf ? pageData.acf.events_tiles : "",
                     },
                     contact: {
+                      isActive: pageData.acf ? pageData.acf.show_contact : "",
                       title: pageData.acf ? pageData.acf.contact_title : "",
                       content: pageData.acf ? pageData.acf.section_contact : ""
                     }

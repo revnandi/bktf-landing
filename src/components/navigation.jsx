@@ -26,7 +26,7 @@ const Navigation = ({ currentWaypoint, isOpen, passedFunction, items }) => {
   };
 
   const renderItems = () => {
-    return items.map((item, index) => {
+    return items.filter((item, index) => item.isActive === true).map((item, index) => {
       return (
         <li
           key={`item_${index}`}

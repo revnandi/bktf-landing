@@ -6,7 +6,6 @@ import { useToggle } from '../hooks/hooks';
 
 const Header = ({ menuContent, currentWaypoint }) => {
   const [isOpen, setIsOpen] = useToggle(false);
-  // const {t} = useTranslation();
 
   return (
     <header className={ styles.container }>

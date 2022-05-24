@@ -7,7 +7,7 @@ import BackButton from "../components/back-button";
 const Teachers = ({ title, content }) => {
   return <PageLayout>
     <Content>
-      <BackButton target="/felveteli"/>
+      <BackButton target="/alapkepzes"/>
       { title &&
         <PageTitle content={ title } />
       }

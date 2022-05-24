@@ -91,188 +91,200 @@ const Main = ({ content, slides, passedFunctions }) => {
 
   return (
     <main ref={container} className={styles.container} id="content_main">
-      <Waypoint
-        onEnter={() => handleEnter('mission')}
-      >
-        <section>
-          <Slider
-            slides={slides}
-            passedFunctions={functionsForSlider}
-          />
-          <div id='mission'>
+      {content.mission.isActive &&
+        <Waypoint
+          onEnter={() => handleEnter('mission')}
+        >
+          <section>
+            <Slider
+              slides={slides}
+              passedFunctions={functionsForSlider}
+            />
+            <div id='mission'>
+              <Content>
+                <SectionTitle title={content.mission.title} />
+                <div dangerouslySetInnerHTML={{ __html: content.mission.content }} />
+              </Content>
+            </div>
+          </section>
+        </Waypoint>
+      }
+      {content.course.isActive &&
+        <Waypoint
+          onEnter={() => handleEnter('course')}
+        >
+          <section>
             <Content>
-              <SectionTitle title={content.mission.title} />
-              <div dangerouslySetInnerHTML={{ __html: content.mission.content }} />
+              <div style={{ position: 'relative' }}>
+                <img
+                  className={styles.doodle}
+                  src={doodle_2}
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      left: '12rem',
+                      top: '-6.55rem'
+                    }
+                  }
+                />
+                <img
+                  className={styles.doodle}
+                  src={doodle_3}
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      right: '7.5rem',
+                      top: '-5.06rem'
+                    }
+                  }
+                />
+                <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
+              </div>
+              <div id='course' >
+                <SectionTitle title={content.course.title} />
+                <div dangerouslySetInnerHTML={{ __html: content.course.content }} />
+              </div>
             </Content>
-          </div>
-        </section>
-      </Waypoint>
-      <Waypoint
-        onEnter={() => handleEnter('course')}
-      >
-        <section>
-          <Content>
-            <div style={{ position: 'relative' }}>
-              <img
-                className={styles.doodle}
-                src={doodle_2}
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    left: '12rem',
-                    top: '-6.55rem'
+          </section>
+        </Waypoint>
+      }
+      {content.entrance.isActive &&
+        <Waypoint
+          onEnter={() => handleEnter('entrance')}
+        >
+          <section>
+            <Content>
+              <div style={{ position: 'relative' }}>
+                <img
+                  className={styles.doodle}
+                  src={doodle_4}
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      left: '0',
+                      top: '-5.7rem'
+                    }
                   }
-                }
-              />
-              <img
-                className={styles.doodle}
-                src={doodle_3}
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    right: '7.5rem',
-                    top: '-5.06rem'
+                />
+                <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
+              </div>
+              <div id='entrance'>
+                <SectionTitle title={content.entrance.title} />
+                <div dangerouslySetInnerHTML={{ __html: content.entrance.content }} />
+              </div>
+            </Content>
+          </section>
+        </Waypoint>
+      }
+      {content.leap.isActive &&
+        <Waypoint
+          onEnter={() => handleEnter('leap')}
+        >
+          <section>
+            <Content>
+              <div style={{ position: 'relative' }}>
+                <img
+                  className={styles.doodle}
+                  src={doodle_9}
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      left: '14rem',
+                      bottom: '-2.5rem'
+                    }
                   }
-                }
-              />
-              <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
-            </div>
-            <div id='course' >
-              <SectionTitle title={content.course.title} />
-              <div dangerouslySetInnerHTML={{ __html: content.course.content }} />
-            </div>
-          </Content>
-        </section>
-      </Waypoint>
-      <Waypoint
-        onEnter={() => handleEnter('entrance')}
-      >
-        <section>
-          <Content>
-            <div style={{ position: 'relative' }}>
-              <img
-                className={styles.doodle}
-                src={doodle_4}
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    left: '0',
-                    top: '-5.7rem'
+                />
+                <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
+              </div>
+              <div id='leap'>
+                <SectionTitle title={content.leap.title} />
+                <Tiles tiles={content.leap.tiles} />
+              </div>
+            </Content>
+          </section>
+        </Waypoint>
+      }
+      {content.events.isActive &&
+        <Waypoint
+          onEnter={() => handleEnter('events')}
+        >
+          <section>
+            <Content>
+              <div style={{ position: 'relative' }}>
+                <img
+                  className={styles.doodle}
+                  src={doodle_7}
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      left: '11rem',
+                      top: '-4.15rem',
+                    }
                   }
-                }
-              />
-              <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
-            </div>
-            <div id='entrance'>
-              <SectionTitle title={content.entrance.title} />
-              <div dangerouslySetInnerHTML={{ __html: content.entrance.content }} />
-            </div>
-          </Content>
-        </section>
-      </Waypoint>
-      <Waypoint
-        onEnter={() => handleEnter('leap')}
-      >
-        <section>
-          <Content>
-            <div style={{ position: 'relative' }}>
-              <img
-                className={styles.doodle}
-                src={doodle_9}
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    left: '14rem',
-                    bottom: '-2.5rem'
+                />
+                <img
+                  className={styles.doodle}
+                  src={doodle_8}
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      right: '6rem',
+                      bottom: '2.75rem'
+                    }
                   }
-                }
-              />
-              <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
-            </div>
-            <div id='leap'>
-              <SectionTitle title={content.leap.title} />
-              <Tiles tiles={content.leap.tiles} />
-            </div>
-          </Content>
-        </section>
-      </Waypoint>
-      <Waypoint
-        onEnter={() => handleEnter('events')}
-      >
-        <section>
-          <Content>
-            <div style={{ position: 'relative' }}>
-              <img
-                className={styles.doodle}
-                src={doodle_7}
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    left: '11rem',
-                    top: '-4.15rem',
+                />
+                <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
+              </div>
+              <div id='events'>
+                <SectionTitle title={content.events.title} />
+                <Tiles tiles={content.events.tiles} />
+              </div>
+            </Content>
+          </section>
+        </Waypoint>
+      }
+      {content.contact.isActive &&
+        <Waypoint
+          onEnter={() => handleEnter('contact')}
+        >
+          <section>
+            <Content>
+              <div style={{ position: 'relative' }}>
+                <img
+                  className={ styles.doodle }
+                  src={ doodle_11 }
+                  alt=""
+                  style={
+                    {
+                      position: 'absolute',
+                      width: '10.25rem',
+                      left: '0',
+                      bottom: '-5rem'
+                    }
                   }
-                }
-              />
-              <img
-                className={styles.doodle}
-                src={doodle_8}
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    right: '6rem',
-                    bottom: '2.75rem'
-                  }
-                }
-              />
-              <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
-            </div>
-            <div id='events'>
-              <SectionTitle title={content.events.title} />
-              <Tiles tiles={content.events.tiles} />
-            </div>
-          </Content>
-        </section>
-      </Waypoint>
-      <Waypoint
-        onEnter={() => handleEnter('contact')}
-      >
-        <section>
-          <Content>
-            <div style={{ position: 'relative' }}>
-              <img
-                className={ styles.doodle }
-                src={ doodle_11 }
-                alt=""
-                style={
-                  {
-                    position: 'absolute',
-                    width: '10.25rem',
-                    left: '0',
-                    bottom: '-5rem'
-                  }
-                }
-              />
-              <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
-            </div>
-            <div id='contact'>
-              <SectionTitle title={content.contact.title} />
-              <div dangerouslySetInnerHTML={{ __html: content.contact.content }} />
-            </div>
-          </Content>
-        </section>
-      </Waypoint>
+                />
+                <hr style={{ height: '1px', margin: '8rem 0 5rem 0', border: 'none', color: '#000', backgroundColor: '#000' }} />
+              </div>
+              <div id='contact'>
+                <SectionTitle title={content.contact.title} />
+                <div dangerouslySetInnerHTML={{ __html: content.contact.content }} />
+              </div>
+            </Content>
+          </section>
+        </Waypoint>
+      }
       <svg
         className={[styles.scrolltotop, scrollY > 950 ? styles.visible : ''].join(' ')}
         onClick={() => scrollToTop()}

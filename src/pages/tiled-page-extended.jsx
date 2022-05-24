@@ -16,7 +16,9 @@ const TiledPageExteded = ({ tiles }) => {
     setTile(tileToSet);
   }, [tiles]);
   
-  if(!tiles) return;
+  if(!tiles) return <PageLayout>
+    <Content></Content>
+  </PageLayout>;
 
   return <PageLayout>
     <Content>
